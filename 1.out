@@ -1,0 +1,172 @@
+Generated graph
+================================ System Message ================================
+
+You are an agent that should check if the user or someone else plans to do something, and if so, add to task list. If they want to check the list, you must print it. DO NOT ANSWER ANYTHING ELSE.
+================================ Human Message =================================
+Name: User
+
+I need to buy groceries
+================================== Ai Message ==================================
+Tool Calls:
+  add_to_task_list (d3f311b7-a4e3-4dd7-97fb-d7c285a517c0)
+ Call ID: d3f311b7-a4e3-4dd7-97fb-d7c285a517c0
+  Args:
+    date: None
+    responsible: None
+    task: buy groceries
+================================= Tool Message =================================
+Name: add_to_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+=======================
+
+================================ System Message ================================
+
+You are an agent that should check if the user or someone else plans to do something, and if so, add to task list. If they want to check the list, you must print it. DO NOT ANSWER ANYTHING ELSE.
+================================ Human Message =================================
+Name: User
+
+I need to buy groceries
+================================== Ai Message ==================================
+Tool Calls:
+  add_to_task_list (d3f311b7-a4e3-4dd7-97fb-d7c285a517c0)
+ Call ID: d3f311b7-a4e3-4dd7-97fb-d7c285a517c0
+  Args:
+    date: None
+    responsible: None
+    task: buy groceries
+================================= Tool Message =================================
+Name: add_to_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+=======================
+
+================================ Human Message =================================
+Name: User
+
+Hi! What day is it today?
+================================== Ai Message ==================================
+================================ System Message ================================
+
+You are an agent that should check if the user or someone else plans to do something, and if so, add to task list. If they want to check the list, you must print it. DO NOT ANSWER ANYTHING ELSE.
+================================ Human Message =================================
+Name: User
+
+I need to buy groceries
+================================== Ai Message ==================================
+Tool Calls:
+  add_to_task_list (d3f311b7-a4e3-4dd7-97fb-d7c285a517c0)
+ Call ID: d3f311b7-a4e3-4dd7-97fb-d7c285a517c0
+  Args:
+    date: None
+    responsible: None
+    task: buy groceries
+================================= Tool Message =================================
+Name: add_to_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+=======================
+
+================================ Human Message =================================
+Name: User
+
+Hi! What day is it today?
+================================== Ai Message ==================================
+================================ Human Message =================================
+Name: User
+
+What is currently on the task list?
+================================== Ai Message ==================================
+Tool Calls:
+  print_task_list (9b7bb3c2-b4f5-459e-aafa-71843d610cec)
+ Call ID: 9b7bb3c2-b4f5-459e-aafa-71843d610cec
+  Args:
+================================= Tool Message =================================
+Name: print_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+=======================
+
+================================ System Message ================================
+
+You are an agent that should check if the user or someone else plans to do something, and if so, add to task list. If they want to check the list, you must print it. DO NOT ANSWER ANYTHING ELSE.
+================================ Human Message =================================
+Name: User
+
+I need to buy groceries
+================================== Ai Message ==================================
+Tool Calls:
+  add_to_task_list (d3f311b7-a4e3-4dd7-97fb-d7c285a517c0)
+ Call ID: d3f311b7-a4e3-4dd7-97fb-d7c285a517c0
+  Args:
+    date: None
+    responsible: None
+    task: buy groceries
+================================= Tool Message =================================
+Name: add_to_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+=======================
+
+================================ Human Message =================================
+Name: User
+
+Hi! What day is it today?
+================================== Ai Message ==================================
+================================ Human Message =================================
+Name: User
+
+What is currently on the task list?
+================================== Ai Message ==================================
+Tool Calls:
+  print_task_list (9b7bb3c2-b4f5-459e-aafa-71843d610cec)
+ Call ID: 9b7bb3c2-b4f5-459e-aafa-71843d610cec
+  Args:
+================================= Tool Message =================================
+Name: print_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+=======================
+
+================================ Human Message =================================
+Name: User
+
+John needs to visit his friends next week!
+================================== Ai Message ==================================
+Tool Calls:
+  add_to_task_list (4a148d88-3d27-4d82-a85a-452bbc6a7ef3)
+ Call ID: 4a148d88-3d27-4d82-a85a-452bbc6a7ef3
+  Args:
+    date: next week
+    responsible: John
+    task: visit friends
+================================= Tool Message =================================
+Name: add_to_task_list
+
+=== Current task list ===
+* buy groceries
+    -> Date: --
+    -> Responsible: --
+* visit friends
+    -> Date: next week
+    -> Responsible: John
+=======================
+
