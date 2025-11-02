@@ -10,6 +10,8 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import ToolNode
 from langgraph.prebuilt import tools_condition
 
+from pydantic import BaseModel, Field
+
 # Cria uma classe para uma tarefa, contendo uma descrição, uma data e um responável (opcionais)
 class Task:
     task: str
@@ -36,16 +38,16 @@ class Task:
 # Cria a lista de tarefas
 task_list: list[Task] = []
 
-
 # Define o State
 class MessagesState(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
 
+
 # Função utilizada para imprimir a lista de tarefas atual
 def task_to_str() -> str:
     result = "=== Current task list ===\n"
-    for task in task_list:
-        result += "* " + str(task.get_task()) + "\n"
+    for i, task in enumerate(task_list):
+        result += f"{i+1}. " + str(task.get_task()) + "\n"
         if(task.get_date() is not None): 
             result += "    -> Date: " + str(task.get_date()) + "\n"
         else:
@@ -80,11 +82,35 @@ def add_to_task_list(task: str, responsible: Optional[str], date: Optional[str])
     task_list.append(Task(task=task,responsible=responsible,date=date))
     return task_to_str()
 
+@tool
+def remove_from_task_list(task: str, responsible: Optional[str], date: Optional[str]) -> str:
+    '''
+    This function removes a task from the task list when it's completed.
+
+    Args:
+        task: task to be removed
+        responsible: person responsible for the task that is going to be removed (can be None)
+        date: date of the task that is going to be removed (can be None)
+    '''
+    class Answer(BaseModel):
+        index: int = Field(description="Index of task")
+    llm_temp = ChatOllama(model="gpt-oss").with_structured_output(Answer)
+
+    task_str = task + "\n"
+    if responsible is not None:
+        task_str += "    -> Responsible: " + responsible + "\n"
+    if date is not None:
+        task_str += "    -> Date: " + date + "\n"
+        
+    resultado = llm_temp.invoke([SystemMessage(f"Given the following task list: \n{task_to_str()}\n identify the index of the given task, answer only with the number."), HumanMessage(f"What's the index of the following task?\n {task_str}")])
+    task_list.pop(resultado.index - 1)
+    return task_to_str()
+    
+
 # Inicializa o chat model
 llm = ChatOllama(model="gpt-oss")
-
 # Fornece as tools ao model
-llm_with_tools = llm.bind_tools([add_to_task_list, print_task_list])
+llm_with_tools = llm.bind_tools([add_to_task_list, print_task_list, remove_from_task_list])
 
 # Função para chamar as tools no grafo
 def tool_calling_llm(state: MessagesState):
@@ -93,7 +119,7 @@ def tool_calling_llm(state: MessagesState):
 # Cria o grafo com o nó de tools e o responsável por chamá-las
 builder = StateGraph(MessagesState)
 builder.add_node("tool_calling_llm", tool_calling_llm)
-builder.add_node("tools", ToolNode([add_to_task_list, print_task_list]))
+builder.add_node("tools", ToolNode([add_to_task_list, print_task_list, remove_from_task_list]))
 
 builder.add_edge(START, "tool_calling_llm")
 builder.add_conditional_edges(
