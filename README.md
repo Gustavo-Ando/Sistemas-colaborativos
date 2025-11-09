@@ -48,7 +48,7 @@ pip install -U langchain_ollama langgraph streamlit
 ```
 Com todos esses requesitos instalados, para rodar o agente bastar fazer
 ```shell
-python3 streamlit.py
+streamlit run streamlit.py
 ```
 Para utilizá-lo, primeiro é necessário criar um agente e então basta enviar mensagens simulando uma conversa em grupo com alocação de tarefas, que o agente irá atualizar uma lista quando necessário.
 
